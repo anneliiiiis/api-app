@@ -9,6 +9,7 @@ const initialState = {
 
 export default function postReducer(state = initialState, action) {
   switch(action.type) {
+    case types.GET_POST:
     case types.GET_POSTS: {
       return {
         ...state,
@@ -25,11 +26,21 @@ export default function postReducer(state = initialState, action) {
         posts: action.response
       };
     }
+    case types.FETCH_POST_FAILED:
     case types.FETCH_POSTS_FAILED: {
       return {
         ...state,
         error: true,
         fetching: false
+      };
+    }
+    case types.POST_FETCHED: {
+      console.log(action);
+      return {
+        ...state,
+        error: false,
+        fetching: false,
+        post: action.response
       };
     }
     default:

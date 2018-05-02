@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
 import Post from '../components/Post';
 
-class Home extends Component {
+class PostWithComments extends Component {
 
   componentDidMount() {
-    this.props.onGetPosts();
+    this.props.onGetPost(this.props.match.params.id);
   }
 
   render() {
-    const { posts, error, fetching } = this.props;
+    const { post, error, fetching } = this.props;
     return (
       <Grid>
         <Row>
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(posts, (post, id) => {
-                return (
-                  <Post key={ post.id } {...post} />
-                )
-              }) }
+              <Post key={ post.id } {...post} />
+            }
           </Col>
         </Row>
       </Grid>
@@ -39,8 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetPosts: () => { dispatch(ActionCreators.fetchPosts()) }
+    onGetPost: (id) => { dispatch(ActionCreators.fetchPost(id)) }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(PostWithComments);

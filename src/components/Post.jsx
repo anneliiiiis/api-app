@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
 
   render() {
-    const { title, body } = this.props;
+    const { title, body, id } = this.props;
     return (
       <Panel>
         <Panel.Heading>
@@ -14,6 +15,11 @@ class Post extends Component {
         <Panel.Body>
           { body }
         </Panel.Body>
+        <Button>
+          <Link to={`/posts/${id}`}>
+            Show
+          </Link>
+        </Button>
       </Panel>
     );
   }

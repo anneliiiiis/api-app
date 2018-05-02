@@ -13,6 +13,18 @@ export function fetchPosts() {
   }
 }
 
+export function fetchPost(id) {
+  return (dispatch, getState) => {
+    dispatch(getPost());
+    return Api.get(`/posts/${id}`, null).then(resp => {
+      dispatch(postFetched(resp));
+    }).catch((ex) => {
+      dispatch(fetchPostFailed());
+      console.log(ex);
+    });
+  }
+}
+
 function getPosts() {
   return {
     type: types.GET_POSTS,
@@ -29,5 +41,23 @@ function postsFetched(response) {
 function fetchPostsFailed() {
   return {
     type: types.FETCH_POSTS_FAILED
+  }
+}
+function getPost(id) {
+  return {
+    type: types.GET_POST,
+  }
+}
+
+function postFetched(response) {
+  return {
+    type: types.POST_FETCHED,
+    response
+  }
+}
+
+function fetchPostFailed(id) {
+  return {
+    type: types.FETCH_POST_FAILED
   }
 }
