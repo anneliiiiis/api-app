@@ -1,10 +1,10 @@
 import  * as types from '../config/types';
+import _ from 'lodash';
 
 const initialState = {
   error: false,
   fetching: false,
-  posts: [],
-  post: {}
+  posts: {}
 };
 
 export default function postReducer(state = initialState, action) {
@@ -18,12 +18,15 @@ export default function postReducer(state = initialState, action) {
       };
     }
     case types.POSTS_FETCHED: {
-      console.log(action);
+      let  newPosts = Object.assign({}, state.posts);
+      _.forEach(action.response, (post, _index) => {
+        newPosts[post.id] = post
+      });
       return {
         ...state,
         error: false,
         fetching: false,
-        posts: action.response
+        posts: newPosts
       };
     }
     case types.FETCH_POST_FAILED:
@@ -35,12 +38,13 @@ export default function postReducer(state = initialState, action) {
       };
     }
     case types.POST_FETCHED: {
-      console.log(action);
+      let  newPosts = Object.assign({}, state.posts);
+      newPosts[action.response.id] = action.response;
       return {
         ...state,
         error: false,
         fetching: false,
-        post: action.response
+        posts: newPosts
       };
     }
     default:

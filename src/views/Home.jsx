@@ -13,7 +13,7 @@ class Home extends Component {
   }
 
   render() {
-    const { posts, error, fetching } = this.props;
+    const { posts, error, fetching, postId } = this.props;
     return (
       <Grid>
         <h1>Posts</h1>
@@ -21,7 +21,7 @@ class Home extends Component {
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(posts, (post, id) => {
+              posts && _.map(posts, (post, id) => {
                 return (
                   <Post showButton={true} key={ post.id } {...post} />
                 )
