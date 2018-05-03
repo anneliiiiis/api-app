@@ -1,10 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Grid, Row, Col } from 'react-bootstrap';
-
-import { ActionCreators } from '../actions';
-import Post from '../components/Post';
-import Comments from '../views/Comments';
 
 export default class User extends Component {
   render() {

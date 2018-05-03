@@ -13,6 +13,7 @@ class Comments extends Component {
   }
 
   render() {
+    const { id } = this.props.match.params;
     const { comments, error, fetching } = this.props;
     return (
       <Grid>
@@ -21,7 +22,7 @@ class Comments extends Component {
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(comments, (comment, postId) => {
+              _.map(comments[id], (comment, postId) => {
                 return (
                    <Comment key={ postId } {...comment} />
                 )

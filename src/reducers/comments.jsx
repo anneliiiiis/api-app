@@ -1,10 +1,10 @@
 import  * as types from '../config/types';
+import _ from 'lodash';
 
 const initialState = {
   error: false,
   fetching: false,
-  posts: [],
-  post: {}
+  comments: {}
 };
 
 export default function commentReducer(state = initialState, action) {
@@ -17,12 +17,13 @@ export default function commentReducer(state = initialState, action) {
       };
     }
     case types.COMMENTS_FETCHED: {
-      console.log(action);
+      let  newComments = Object.assign({}, state.comments);
+      newComments[_.first(action.response).postId]=action.response;
       return {
         ...state,
         error: false,
         fetching: false,
-        comments: action.response
+        comments: newComments
       };
     }
     case types.FETCH_COMMENTS_FAILED: {
