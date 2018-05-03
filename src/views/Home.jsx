@@ -21,11 +21,11 @@ class Home extends Component {
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              posts && _.map(posts, (post, id) => {
+              (posts && _.map(posts, (post, id) => {
                 return (
                   <Post showButton={true} key={ post.id } {...post} />
                 )
-              }) }
+              })) }
           </Col>
         </Row>
       </Grid>

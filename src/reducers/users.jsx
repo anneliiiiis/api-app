@@ -3,8 +3,7 @@ import  * as types from '../config/types';
 const initialState = {
   error: false,
   fetching: false,
-  users: [],
-  user: {}
+  users: {}
 };
 
 export default function userReducer(state = initialState, action) {
@@ -17,12 +16,13 @@ export default function userReducer(state = initialState, action) {
       };
     }
     case types.USER_FETCHED: {
-      console.log(action);
+      let  newUsers = Object.assign({}, state.users);
+      newUsers[action.response.id] = action.response;
       return {
         ...state,
         error: false,
         fetching: false,
-        user: action.response
+        users: newUsers
       };
     }
     case types.FETCH_USER_FAILED: {

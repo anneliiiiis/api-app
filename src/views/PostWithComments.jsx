@@ -16,9 +16,8 @@ class PostWithComments extends Component {
 
   render() {
     const { id } = this.props.match.params;
-    const { posts, error, fetching, history, user } = this.props;
+    const { posts, error, fetching, history, users} = this.props;
     const post = posts[id];
-
     return (
       <div>
         <Grid>
@@ -27,12 +26,12 @@ class PostWithComments extends Component {
             <Col lg={12}>
               { (fetching && <h1>Loading...</h1>) ||
                 (error && <h1>Error...</h1>) ||
-                post && <Post showButton={false} history={history} key={ post.id } {...post} />
+                (post && <Post showButton={false} history={history} key={ post.id } {...post} />)
               }
-              <User fetching={fetching} error={error} {...user}/>
             </Col>
           </Row>
         </Grid>
+
         <Comments { ...this.props }/>
       </div>
     );
