@@ -7,6 +7,7 @@ export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED';
 export const GET_POST = 'GET_POST';
 export const POST_FETCHED = 'POST_FETCHED';
 export const FETCH_POST_FAILED = 'FETCH_POST_FAILED';
+export const NEW_POST='DELETE_POST';
 
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const COMMENTS_FETCHED = 'COMMENTS_FETCHED';

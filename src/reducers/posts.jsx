@@ -47,6 +47,13 @@ export default function postReducer(state = initialState, action) {
         posts: newPosts
       };
     }
+    case types.NEW_POST:
+      let  newPosts = Object.assign({}, state.posts);
+      newPosts[action.response.id] = action.response;
+      return {
+        ...state,
+        posts: newPosts
+      };
     default:
       return state;
   }

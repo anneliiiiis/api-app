@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Comment extends Component {
 
@@ -10,6 +11,11 @@ class Comment extends Component {
       <Panel>
         <Panel.Heading>
           { name }
+          <Link to={`/`}>
+            <Button className="pull-right" >
+              delete
+            </Button>
+          </Link>
         </Panel.Heading>
         <Panel.Body>
           { body }
