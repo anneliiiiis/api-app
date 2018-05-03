@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Panel, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Panel } from 'react-bootstrap';
 
-class Post extends Component {
+class Comment extends Component {
 
   render() {
-    const { title, body, id } = this.props;
+    const { name, body } = this.props;
     return (
       <Panel>
         <Panel.Heading>
-          { title }
-          <Button>
-            {<Link to={`/posts/${id}`}>
-              Show
-            </Link>}
-        </Button>
+          { name }
         </Panel.Heading>
         <Panel.Body>
           { body }
@@ -34,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);

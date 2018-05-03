@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
 
+import _ from 'lodash';
 import { ActionCreators } from '../actions';
-import Post from '../components/Post';
+import Comment from '../components/Comment';
 
-class Home extends Component {
+class Comments extends Component {
 
   componentDidMount() {
-    this.props.onGetPosts();
+    this.props.onGetComments(this.props.match.params.id);
   }
 
   render() {
-    const { posts, error, fetching } = this.props;
+    const { comments, error, fetching } = this.props;
     return (
       <Grid>
-        <h1>Posts</h1>
         <Row>
+          <h1>Comments</h1>
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(posts, (post, id) => {
+              _.map(comments, (comment, postId) => {
                 return (
-                  <Post showButton={true} key={ post.id } {...post} />
+                   <Comment key={ postId } {...comment} />
                 )
               }) }
           </Col>
@@ -35,13 +35,13 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.posts
+  return state.comments
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetPosts: () => { dispatch(ActionCreators.fetchPosts()) }
+    onGetComments: (id) => { dispatch(ActionCreators.fetchComments(id)) }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Comments);

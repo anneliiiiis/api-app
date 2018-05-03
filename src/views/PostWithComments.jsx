@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
 import Post from '../components/Post';
+import Comments from '../views/Comments';
 
 class PostWithComments extends Component {
 
@@ -15,6 +16,7 @@ class PostWithComments extends Component {
     const { post, error, fetching } = this.props;
     return (
       <Grid>
+        <h1>Post</h1>
         <Row>
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
@@ -23,6 +25,7 @@ class PostWithComments extends Component {
             }
           </Col>
         </Row>
+        <Comments { ...this.props }/>
       </Grid>
     );
   }
