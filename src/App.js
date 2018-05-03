@@ -7,8 +7,6 @@ import {
 import createHistory from 'history/createBrowserHistory';
 import Home from './views/Home';
 import PostWithComments from './views/PostWithComments';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 class App extends Component {
   render() {

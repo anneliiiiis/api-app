@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
 import Post from '../components/Post';
+import User from '../components/User';
 import Comments from '../views/Comments';
 
 class PostWithComments extends Component {
@@ -12,33 +13,45 @@ class PostWithComments extends Component {
     this.props.onGetPost(this.props.match.params.id);
   }
 
+  componentWillReceiveProps(nextProps){
+    const { userId } = this.props.post;
+    if (userId){
+      this.props.onGetUser(userId);
+    }
+  }
+
   render() {
-    const { post, error, fetching, history } = this.props;
+    const { post, error, fetching, history, user } = this.props;
     return (
-      <Grid>
-        <h1>Post</h1>
-        <Row>
-          <Col lg={12}>
-            { (fetching && <h1>Loading...</h1>) ||
-              (error && <h1>Error...</h1>) ||
-              <Post showButton={false} history={history} key={ post.id } {...post} />
-            }
-          </Col>
-        </Row>
+      <div>
+        <Grid>
+          <h1>Post</h1>
+          <Row>
+            <Col lg={12}>
+              { (fetching && <h1>Loading...</h1>) ||
+                (error && <h1>Error...</h1>) ||
+                <Post showButton={false} history={history} key={ post.id } {...post} />
+              }
+              <User fetching={fetching} error={error} {...user}/>
+            </Col>
+          </Row>
+        </Grid>
         <Comments { ...this.props }/>
-      </Grid>
+      </div>
     );
   }
 
 }
 
 const mapStateToProps = (state) => {
-  return state.posts
+  return Object.assign({}, state.posts, state.users)
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetPost: (id) => { dispatch(ActionCreators.fetchPost(id)) }
+    onGetPost: (id) => { dispatch(ActionCreators.fetchPost(id)) },
+    onGetUser: (id) => { dispatch(ActionCreators.fetchUser(id)) }
+
   };
 };
 

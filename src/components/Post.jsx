@@ -10,15 +10,16 @@ function ShowButton(props) {
   const history = props.history;
   if (showButton) {
     return (
-      <Button>
-        <Link to={`/posts/${id}`}>
+      <Link to={`/posts/${id}`}>
+        <Button className="pull-right" >
           Show
-        </Link>
-      </Button>
+        </Button>
+      </Link>
+
     )
   }
   return(
-    <Button onClick={() => history.push('/')}>
+    <Button className="pull-right" onClick={() => history.push('/')}>
       Back
     </Button>
   )
@@ -31,7 +32,7 @@ class Post extends Component {
     return (
       <Panel>
         <Panel.Heading>
-          { title }
+          <p>{ title }</p>
           <ShowButton showButton={showButton} id={id} history={history}/>
         </Panel.Heading>
         <Panel.Body>
