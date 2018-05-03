@@ -13,7 +13,7 @@ class PostWithComments extends Component {
   }
 
   render() {
-    const { post, error, fetching } = this.props;
+    const { post, error, fetching, history } = this.props;
     return (
       <Grid>
         <h1>Post</h1>
@@ -21,7 +21,7 @@ class PostWithComments extends Component {
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              <Post key={ post.id } {...post} />
+              <Post showButton={false} history={history} key={ post.id } {...post} />
             }
           </Col>
         </Row>
