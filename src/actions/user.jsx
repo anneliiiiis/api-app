@@ -1,6 +1,18 @@
 import * as types from '../config/types';
 import Api from '../config/api';
 
+export function fetchUsers() {
+  return (dispatch, getState) => {
+    dispatch(getUsers());
+    return Api.get(`/users`, null).then(resp => {
+      dispatch(usersFetched(resp));
+    }).catch((ex) => {
+      dispatch(fetchUsersFailed());
+      console.log(ex);
+    });
+  }
+}
+
 export function fetchUser(id) {
   return (dispatch, getState) => {
     dispatch(getUser());
@@ -10,6 +22,25 @@ export function fetchUser(id) {
       dispatch(fetchUserFailed());
       console.log(ex);
     });
+  }
+}
+
+function getUsers() {
+  return {
+    type: types.GET_USERS,
+  }
+}
+
+function usersFetched(response) {
+  return {
+    type: types.USERS_FETCHED,
+    response
+  }
+}
+
+function fetchUsersFailed() {
+  return {
+    type: types.FETCH_USERS_FAILED
   }
 }
 

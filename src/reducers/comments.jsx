@@ -33,6 +33,8 @@ export default function commentReducer(state = initialState, action) {
         fetching: false
       };
     }
+    case types.DELETE_COMMENT: {
+    }
     default:
       return state;
   }

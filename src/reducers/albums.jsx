@@ -4,29 +4,29 @@ import _ from 'lodash';
 const initialState = {
   error: false,
   fetching: false,
-  posts: {}
+  albums: {}
 };
 
 export default function postReducer(state = initialState, action) {
   switch(action.type) {
-    case types.GET_POST:
-    case types.GET_POSTS: {
+    case types.GET_ALBUM:
+    case types.GET_ALBUMS: {
       return {
         ...state,
         error: false,
         fetching: true
       };
     }
-    case types.POSTS_FETCHED: {
-      let  newPosts = Object.assign({}, state.posts);
-      _.forEach(action.response, (post, _index) => {
-        newPosts[post.id] = post
+    case types.ALBUMS_FETCHED: {
+      let  newAlbumss = Object.assign({}, state.albums);
+      _.forEach(action.response, (album, _index) => {
+        newAlbums[album.id] = album
       });
       return {
         ...state,
         error: false,
         fetching: false,
-        posts: newPosts
+        albums: newAlbums
       };
     }
     case types.FETCH_POST_FAILED:
@@ -38,13 +38,13 @@ export default function postReducer(state = initialState, action) {
       };
     }
     case types.POST_FETCHED: {
-      let  newPosts = Object.assign({}, state.posts);
-      newPosts[action.response.id] = action.response;
+      let  newAlbums = Object.assign({}, state.albums);
+      newAlbums[action.response.id] = action.response;
       return {
         ...state,
         error: false,
         fetching: false,
-        posts: newPosts
+        albums: newAlbums
       };
     }
     default:

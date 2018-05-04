@@ -4,14 +4,14 @@ import { Panel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
-function ShowButton(props) {
+const ShowButton = props => {
   const showButton = props.showButton;
   const id = props.id;
   const history = props.history;
   if (showButton) {
     return (
       <Link to={`/posts/${id}`}>
-        <Button className="pull-right" >
+        <Button className="pull-right btn-info" >
           Show
         </Button>
       </Link>
@@ -19,7 +19,7 @@ function ShowButton(props) {
     )
   }
   return(
-    <Button className="pull-right" onClick={() => history.push('/')}>
+    <Button className="pull-right" onClick={() => history.push('/posts')}>
       Back
     </Button>
   )

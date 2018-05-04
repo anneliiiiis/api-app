@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import Home from './views/Home';
+import Posts from './views/Posts';
+import Users from './views/Users';
 import PostWithComments from './views/PostWithComments';
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Home}/>
+            <Route path="/posts" exact component={Posts}/>
+            <Route path="/users" exact component={Users}/>
             <Route history={history} path="/posts/:id" component={PostWithComments}/>
           </Switch>
         </div>

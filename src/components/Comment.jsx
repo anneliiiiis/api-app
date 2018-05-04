@@ -12,8 +12,8 @@ class Comment extends Component {
         <Panel.Heading>
           { name }
           <Link to={`/`}>
-            <Button className="pull-right" >
-              delete
+            <Button className="pull-right btn-danger" >
+              Delete
             </Button>
           </Link>
         </Panel.Heading>

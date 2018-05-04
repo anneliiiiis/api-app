@@ -1,46 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
 import Post from '../components/Post';
+import Posts from '../views/Posts';
+import { Link } from 'react-router-dom';
 
-class Home extends Component {
 
-  componentDidMount() {
-    this.props.onGetPosts();
-  }
-
+export default class Home extends Component {
   render() {
-    const { posts, error, fetching, postId } = this.props;
     return (
-      <Grid>
-        <h1>Posts</h1>
-        <Row>
-          <Col lg={12}>
-            { (fetching && <h1>Loading...</h1>) ||
-              (error && <h1>Error...</h1>) ||
-              (posts && _.map(posts, (post, id) => {
-                return (
-                  <Post showButton={true} key={ post.id } {...post} />
-                )
-              })) }
-          </Col>
-        </Row>
-      </Grid>
+      <div className="container">
+        <Link to={`/users`}>
+          <Button className="btn-info" >
+            Show users
+          </Button>
+        </Link>
+        <Link to={`/posts`}>
+          <Button className= "btn-info" >
+            Show posts
+          </Button>
+        </Link>
+      </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return state.posts
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onGetPosts: () => { dispatch(ActionCreators.fetchPosts()) }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
