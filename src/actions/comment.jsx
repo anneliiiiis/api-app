@@ -13,15 +13,6 @@ export function fetchComments(postId) {
   }
 }
 
-function removeByKey (obj, deleteKey) {
-  return Object.keys(obj)
-    .filter(key => key !== deleteKey)
-    .reduce((result, current) => {
-      result[current] = obj[current];
-      return result;
-  }, {});
-}
-
 function getComments(postId) {
   return {
     type: types.GET_COMMENTS,
@@ -40,8 +31,4 @@ function fetchCommentsFailed() {
     type: types.FETCH_COMMENTS_FAILED
   }
 }
-function deleteComment(id) {
-  return {
-    type: types.FETCH_COMMENTS_FAILED
-  }
-}
+

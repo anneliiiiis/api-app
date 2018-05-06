@@ -45,7 +45,7 @@ class PostWithComments extends Component {
             </Col>
           </Row>
         </Grid>
-        <Comments { ...this.props }/>
+        <Comments id ={ id }/>
       </div>
     );
   }

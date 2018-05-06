@@ -9,12 +9,11 @@ import Comment from '../components/Comment';
 class Comments extends Component {
 
   componentDidMount() {
-    this.props.onGetComments(this.props.match.params.id);
+    this.props.onGetComments(this.props.id);
   }
 
   render() {
-    const { id } = this.props.match.params;
-    const { comments, error, fetching } = this.props;
+    const { id, comments, error, fetching } = this.props;
     return (
       <Grid>
         <Row>
@@ -22,9 +21,14 @@ class Comments extends Component {
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(comments[id], (comment, postId) => {
+              _.map(comments[id], (comment, commentId) => {
                 return (
-                   <Comment key={ postId } {...comment} />
+                  <div>
+                    <p>{id}</p>
+                    <p>{commentId}</p>
+                    <p>{}</p>
+                    <Comment key={ commentId } {...comment} />
+                  </div>
                 )
               }) }
           </Col>
@@ -32,7 +36,6 @@ class Comments extends Component {
       </Grid>
     );
   }
-
 }
 
 const mapStateToProps = (state) => {

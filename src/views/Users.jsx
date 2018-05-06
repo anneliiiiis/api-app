@@ -14,8 +14,6 @@ class Users extends Component {
 
   render() {
     const { users, error, fetching } = this.props;
-    console.log("here");
-    console.log(users);
     return (
       <Grid>
         <h1>Users</h1>

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 class Album extends Component {
   render() {
-    const { name } = this.props;
+    const { title, id } = this.props;
     return (
       <div>
-        <p key={ name }>Name: { name } </p>
+        <p key={ id }>Title: { title } </p>
       </div>
     );
   }

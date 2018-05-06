@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Panel, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 const ShowButton = props => {
   const showButton = props.showButton;
   const id = props.id;
@@ -30,15 +29,17 @@ class Post extends Component {
   render() {
     const { title, body, id, history, showButton } = this.props;
     return (
-      <Panel>
-        <Panel.Heading>
-          <p>{ title }</p>
-          <ShowButton showButton={showButton} id={id} history={history}/>
-        </Panel.Heading>
-        <Panel.Body>
-          { body }
-        </Panel.Body>
-      </Panel>
+      <div>
+        <Panel>
+          <Panel.Heading>
+            <p>POST WITH{ title }</p>
+            <ShowButton showButton={showButton} id={id} history={history}/>
+          </Panel.Heading>
+          <Panel.Body>
+            { body }
+          </Panel.Body>
+        </Panel>
+      </div>
     );
   }
 

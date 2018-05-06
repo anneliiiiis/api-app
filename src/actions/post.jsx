@@ -43,6 +43,7 @@ function fetchPostsFailed() {
     type: types.FETCH_POSTS_FAILED
   }
 }
+
 function getPost(id) {
   return {
     type: types.GET_POST,

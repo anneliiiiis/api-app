@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Panel } from 'react-bootstrap';
+import Albums from '../views/Albums';
 
 class User extends Component {
   render() {
-    const { name, username, email, phone } = this.props;
+    const { id, name, username, email, phone } = this.props;
     return (
-      <div className="media">
-        <div class="media-body">
-        <h4 key={ name }>{ name } </h4>
-        <p key={ username }>Username: { username } </p>
-        <p key={ email }>Email: { email } </p>
-        <p key={ phone }>Phone: { phone } </p>
-        </div>
+      <div>
+        <Panel>
+          <Panel.Heading key={name}>
+            <h2> { name } </h2>
+          </Panel.Heading>
+          <Panel.Body>
+            <p key={ username }>Username: { username } </p>
+            <p key={ email }>Email: { email } </p>
+            <p key={ phone }>Phone: { phone } </p>
+          </Panel.Body>
+          <Albums id ={ id }/>
+        </Panel>
       </div>
     );
   }

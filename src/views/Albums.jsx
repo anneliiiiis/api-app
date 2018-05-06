@@ -4,28 +4,28 @@ import _ from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
-import User from '../components/User';
+import Album from '../components/Album';
 
 class Albums extends Component {
 
   componentDidMount() {
-    this.props.onGetAlbums();
+    this.props.onGetAlbums(this.props.id);
   }
 
   render() {
-    const { albums, error, fetching } = this.props;
+    const { id, albums, error, fetching } = this.props;
     return (
       <Grid>
-        <h1>Albums</h1>
+        <h3>Albums</h3>
         <Row>
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              (albums && _.map(albums, (user, id) => {
+              _.map(albums[id], (album, albumId) => {
                 return (
-                  <User key={ album.id } {...album} />
+                  <Album key={ albumId } {...album} />
                 )
-              })) }
+              }) }
           </Col>
         </Row>
       </Grid>
@@ -34,12 +34,12 @@ class Albums extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.users
+  return state.albums
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetUsers: () => { dispatch(ActionCreators.fetchUsers()) }
+    onGetAlbums: (id) => { dispatch(ActionCreators.fetchAlbums(id)) }
   };
 };
 
