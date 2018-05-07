@@ -13,6 +13,13 @@ export function fetchAlbums(userId) {
   }
 }
 
+export const deleteAlbum = (id) => {
+  return {
+    type: types.DELETE_ALBUM,
+    id: id
+  }
+}
+
 function getAlbums(userId) {
   return {
     type: types.GET_ALBUMS,

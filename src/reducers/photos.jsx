@@ -4,39 +4,37 @@ import _ from 'lodash';
 const initialState = {
   error: false,
   fetching: false,
-  albums: {}
+  photos: {}
 };
 
-export default function AlbumReducer(state = initialState, action) {
+export default function PhotoReducer(state = initialState, action) {
   switch(action.type) {
-    case types.GET_ALBUMS: {
+    case types.GET_PHOTOS: {
       return {
         ...state,
         error: false,
         fetching: true
       };
     }
-    case types.ALBUMS_FETCHED: {
-      let  newAlbums = Object.assign({}, state.albums);
-      newAlbums[_.first(action.response).userId]=action.response;
+    case types.PHOTOS_FETCHED: {
+      let  newPhotos = Object.assign({}, state.photos);
+      newPhotos[_.first(action.response).albumId]=action.response;
       return {
         ...state,
         error: false,
         fetching: false,
-        albums: newAlbums
+        photos: newPhotos
       };
     }
-    case types.FETCH_ALBUMS_FAILED: {
+    case types.FETCH_PHOTOS_FAILED: {
       return {
         ...state,
         error: true,
         fetching: false
       };
     }
-    case types.DELETE_ALBUM: {
-      return { albums: state.albums.filter((album) => album.id !== action.id)}
-    }
     default:
       return state;
   }
 };
+

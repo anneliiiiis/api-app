@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import _ from 'lodash';
 import { ActionCreators } from '../actions';
-import Comment from '../components/Comment';
+import Photo from '../components/Photo';
 
-class Comments extends Component {
+class Photos extends Component {
 
   componentDidMount() {
-    this.props.onGetComments(this.props.id);
+    this.props.onGetPhotos(this.props.id);
   }
 
   render() {
-    const { id, comments, error, fetching } = this.props;
+    const { id, photos, error, fetching } = this.props;
     return (
       <Grid>
+        <h3>Photos</h3>
         <Row>
-          <h1>Comments</h1>
           <Col lg={12}>
             { (fetching && <h1>Loading...</h1>) ||
               (error && <h1>Error...</h1>) ||
-              _.map(comments[id], (comment, commentId) => {
+              _.map(photos[id], (photo, photoId) => {
                 return (
-                  <div>
-                    <Comment key={ commentId } {...comment} />
-                  </div>
+                  <Photo key={ photoId } {...photo} />
                 )
               }) }
           </Col>
@@ -36,13 +34,13 @@ class Comments extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.comments
+  return state.photos
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onGetComments: (id) => { dispatch(ActionCreators.fetchComments(id)) }
+    onGetPhotos: (id) => { dispatch(ActionCreators.fetchPhotos(id)) }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+export default connect(mapStateToProps, mapDispatchToProps)(Photos);

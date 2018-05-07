@@ -2,7 +2,8 @@ import * as PostActions from './post';
 import * as UserActions from './user';
 import * as CommentActions from './comment';
 import * as AlbumActions from './album';
+import * as PhotoActions from './photo';
 
 export const ActionCreators = Object.assign({},
-  PostActions, CommentActions, UserActions, AlbumActions
+  PostActions, CommentActions, UserActions, AlbumActions, PhotoActions
 );
