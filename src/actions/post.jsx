@@ -13,6 +13,16 @@ export function fetchPosts() {
   }
 }
 
+export function createPost(postData) {
+  return (dispatch, getState) => {
+    console.log(postData);
+    return Api.post(`/posts`, postData).then(resp => {
+      dispatch(newPost(resp));
+    })
+  }
+}
+
+
 export function fetchPost(id) {
   return (dispatch, getState) => {
     dispatch(getPost());
@@ -22,6 +32,13 @@ export function fetchPost(id) {
       dispatch(fetchPostFailed());
       console.log(ex);
     });
+  }
+}
+
+function newPost(response) {
+  return {
+    type: types.NEW_POST,
+    response
   }
 }
 

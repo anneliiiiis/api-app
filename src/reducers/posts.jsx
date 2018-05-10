@@ -9,6 +9,16 @@ const initialState = {
 
 export default function postReducer(state = initialState, action) {
   switch(action.type) {
+    case types.NEW_POST: {
+      let  newPosts = Object.assign({}, state.posts);
+      newPosts[action.response.id] = action.response;
+      return {
+        ...state,
+        error: false,
+        fetching: false,
+        posts: newPosts
+      };
+    }
     case types.GET_POST:
     case types.GET_POSTS: {
       return {

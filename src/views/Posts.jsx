@@ -5,6 +5,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import { ActionCreators } from '../actions';
 import Post from '../components/Post';
+import NewPost from '../components/NewPost';
 
 class Posts extends Component {
 
@@ -16,6 +17,9 @@ class Posts extends Component {
     const { posts, error, fetching } = this.props;
     return (
       <Grid>
+        <Row>
+          <NewPost/>
+        </Row>
         <h1>Posts</h1>
         <Row>
           <Col lg={12}>

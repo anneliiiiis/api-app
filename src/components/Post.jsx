@@ -32,7 +32,7 @@ class Post extends Component {
       <div>
         <Panel>
           <Panel.Heading>
-            <p>POST WITH{ title }</p>
+            <p>{ title }</p>
             <ShowButton showButton={showButton} id={id} history={history}/>
           </Panel.Heading>
           <Panel.Body>
